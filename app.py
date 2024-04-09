@@ -54,7 +54,7 @@ while True:
             for s_prime in range(num_states):
                 action_values[a] += transition_probs[s, a, s_prime] * (rewards[s, a, s_prime] + gamma * values[s_prime])
         new_values[s] = np.max(action_values)
-    if np.max(np.abs(new_values - values)) < 1e-4:
+    if (np.abs(new_values - values) < 1e-4) or (iterations > 100):
         break
     values = new_values
 
